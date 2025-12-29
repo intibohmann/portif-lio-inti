@@ -1,66 +1,535 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+:root {
+    --bg-color: #0a192f;        /* Azul marinho muito escuro (quase preto) */
+    --bg-light: #112240;        /* Cor dos cartões */
+    --text-primary: #ccd6f6;    /* Branco gelo para texto principal */
+    --text-secondary: #8892b0;  /* Cinza azulado para texto secundário */
+    --accent-color: #64ffda;    /* Verde Água/Ciano Neon (Cor de destaque) */
+    --white: #ffffff;
+    --font-main: 'Montserrat', sans-serif;
+    --font-mono: 'Courier New', monospace; /* Para detalhes tech */
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* =========================================
+   2. HEADER (Navegação)
+   ========================================= */
 .main-header {
-    background-color: #2196F3; 
-    color: white;
-    padding: 15px 50px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(10, 25, 47, 0.85); /* Semitransparente */
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Menu fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
 }
 
 .main-header .logo a {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: white;
-    text-decoration: none; 
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-family: var(--font-mono);
 }
 
 .main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-}
-
-.main-nav li {
-    margin-left: 20px;
+    gap: 30px;
 }
 
 .main-nav a {
-    color: white;
-    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.9em;
     font-weight: 500;
-    transition: color 0.3s;
 }
 
 .main-nav a:hover {
-    color: #FFC107;
+    color: var(--accent-color);
 }
 
+/* =========================================
+   3. HERO SECTION (Apresentação)
+   ========================================= */
+.hero-section {
+    min-height: 80vh; /* Ocupa quase a tela toda */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.hero-content {
+    max-width: 1000px;
+    text-align: left; /* Alinhado a esquerda fica mais moderno */
+}
+
+.hero-content .ola {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.hero-content h2 {
+    font-size: 3.5em;
+    margin: 10px 0 20px 0;
+    color: var(--text-secondary);
+    line-height: 1.1;
+}
+
+.hero-content .hero-desc {
+    max-width: 500px;
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+}
+
+/* Botão Call to Action */
+.btn-cta {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+.btn-cta:hover {
+    background-color: rgba(100, 255, 218, 0.1); /* Brilho suave no fundo */
+}
+
+/* =========================================
+   4. SEÇÕES GERAIS (Títulos)
+   ========================================= */
 main {
-    padding: 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px 100px 50px;
 }
 
-.cv-section, .portfolio-section {
-    text-align: center;
+section {
+    margin-bottom: 100px;
+    padding-top: 60px; /* Espaço para o menu fixo não tapar o título */
+}
+
+section h2 {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    color: var(--text-primary);
     margin-bottom: 40px;
-    padding-top: 20px; 
-    
 }
 
+/* Linha decorativa ao lado do título */
+section h2::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 1px;
+    background-color: #233554;
+    margin-left: 20px;
+}
+
+/* =========================================
+   5. PROJETOS (GRID)
+   ========================================= */
+.projetos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.projeto-card {
+    background-color: var(--bg-light);
+    padding: 30px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.projeto-card:hover {
+    transform: translateY(-7px); /* Sobe um pouco */
+    border-color: var(--accent-color); /* Borda brilha */
+    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+}
+
+.projeto-card h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+    font-size: 1.4em;
+}
+
+.projeto-card p {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+.projeto-card .linguagens {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.projeto-card .linguagens span {
+    color: var(--accent-color);
+}
+
+.links-projeto {
+    display: flex;
+    gap: 15px;
+}
+
+.links-projeto a {
+    font-size: 0.9em;
+    color: var(--text-primary);
+}
+
+.links-projeto a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* =========================================
+   6. RODAPÉ
+   ========================================= */
 .main-footer {
     text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    margin-top: 30px;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    margin-top: 50px;
 }
 
+/* =========================================
+   7. RESPONSIVIDADE (Celular)
+   ========================================= */
+@media (max-width: 768px) {
+    .main-header { padding: 20px; }
+    .hero-content h1 { font-size: 2.5em; }
+    .hero-content h2 { font-size: 2em; }
+    main { padding: 0 20px; }
+}
+
+/* =========================================
+   8. PÁGINA DE CONTATO (ESTILOS ESPECIAIS)
+   ========================================= */
+
+/* Ajuste para o main ocupar a tela toda e centralizar o form */
+.contato-main {
+    position: relative;
+    z-index: 2;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2pc;
+}
+
+/* Cartão do Formulário */
+.contato-section {
+    background: rgba(16, 7, 32, 0.9); /* Fundo muito escuro e transparente */
+    backdrop-filter: blur(10px); /* Desfoque no fundo */
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #00ff88; /* Borda verde matrix */
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.contato-section h2 {
+    color: #fff;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.contato-section h2::after { display: none; } /* Remove a linha lateral padrão */
+
+/* Inputs do formulário */
+.form-contato input,
+.form-contato textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    color: #00ff88; /* Texto verde ao digitar */
+    font-family: 'Courier New', monospace;
+    margin-bottom: 15px;
+}
+
+.form-contato input:focus,
+.form-contato textarea:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.form-contato label {
+    color: #ccd6f6;
+    text-align: left;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* =========================================
+   9. EFEITOS VISUAIS (UIVERSE)
+   ========================================= */
+
+/* --- EFEITO: BOTÃO GLOW (Mrtqzbek11) --- */
+.btn-enviar-glow {
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 8px; /* Ajustei para combinar com o input */
+  border: none;
+  position: relative;
+  background: #100720;
+  transition: 0.1s;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+.btn-enviar-glow::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  /* Mudei as cores para combinar com o tema Matrix (Verde e Azul) */
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0, 255, 136, 1) 17.8%, rgba(2, 245, 255, 1) 100.2% );
+  filter: blur(15px);
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+}
+
+.btn-enviar-glow:active {
+  transform: scale(0.98);
+  background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0, 255, 136, 1) 17.8%, rgba(2, 245, 255, 1) 100.2% );
+  transition: 0.5s;
+}
+
+/* --- EFEITO: AI MATRIX LOADER (PriyanshuGupta28) --- */
+.ai-matrix-loader {
+  width: 100px; /* Reduzi um pouco */
+  height: 100px;
+  margin: 0 auto 20px auto; /* Centralizado */
+  position: relative;
+  perspective: 800px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.digit {
+  color: #00ff88;
+  font-family: monospace;
+  font-size: 18px;
+  text-align: center;
+  text-shadow: 0 0 5px #00ff88;
+  animation: matrix-fall 2s infinite, matrix-flicker 0.5s infinite;
+  opacity: 0;
+}
+
+/* Delays dos dígitos */
+.digit:nth-child(1) { animation-delay: 0.1s; }
+.digit:nth-child(2) { animation-delay: 0.3s; }
+.digit:nth-child(3) { animation-delay: 0.5s; }
+.digit:nth-child(4) { animation-delay: 0.7s; }
+.digit:nth-child(5) { animation-delay: 0.9s; }
+.digit:nth-child(6) { animation-delay: 1.1s; }
+.digit:nth-child(7) { animation-delay: 1.3s; }
+.digit:nth-child(8) { animation-delay: 1.5s; }
+.digit:nth-child(9) { animation-delay: 1.7s; }
+
+.glow {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+  animation: matrix-pulse 2s infinite;
+}
+
+@keyframes matrix-fall {
+  0% { transform: translateY(-30px) rotateX(90deg); opacity: 0; }
+  20%, 80% { transform: translateY(0) rotateX(0deg); opacity: 0.8; }
+  100% { transform: translateY(30px) rotateX(-90deg); opacity: 0; }
+}
+
+@keyframes matrix-flicker {
+  0%, 19%, 21%, 100% { opacity: 0.8; }
+  20% { opacity: 0.2; }
+}
+
+@keyframes matrix-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* =========================================
+   NOVO FUNDO: STAR RAIN (CSS PURO)
+   ========================================= */
+
+/* Garante que o conteúdo do site fique ACIMA do fundo */
+.contato-main {
+    position: relative;
+    z-index: 10; /* Maior que o z-index do fundo */
+}
+
+/* Container do fundo fixo */
+.star-rain-container {
+  position: fixed; /* Fixa na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1; /* Fica atrás do formulário */
+  overflow: hidden;
+  background-color: #000;
+  
+  /* Gradientes (Estrelas/Chuva) */
+  --c: #09f; /* Cor azul neon */
+  background-image: radial-gradient(4px 100px at 0px 235px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 235px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 117.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 252px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 252px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 126px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 150px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 150px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 75px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 253px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 253px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 126.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 204px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 204px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 102px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 134px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 134px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 67px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 179px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 179px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 89.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 299px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 299px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 149.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 215px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 215px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 107.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 281px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 281px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 140.5px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 158px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 158px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 79px, var(--c) 100%, #0000 150%),
+    radial-gradient(4px 100px at 0px 210px, var(--c), #0000),
+    radial-gradient(4px 100px at 300px 210px, var(--c), #0000),
+    radial-gradient(1.5px 1.5px at 150px 105px, var(--c) 100%, #0000 150%);
+  background-size:
+    300px 235px, 300px 235px, 300px 235px,
+    300px 252px, 300px 252px, 300px 252px,
+    300px 150px, 300px 150px, 300px 150px,
+    300px 253px, 300px 253px, 300px 253px,
+    300px 204px, 300px 204px, 300px 204px,
+    300px 134px, 300px 134px, 300px 134px,
+    300px 179px, 300px 179px, 300px 179px,
+    300px 299px, 300px 299px, 300px 299px,
+    300px 215px, 300px 215px, 300px 215px,
+    300px 281px, 300px 281px, 300px 281px,
+    300px 158px, 300px 158px, 300px 158px,
+    300px 210px, 300px 210px, 300px 210px;
+  animation: hi 150s linear infinite;
+}
+
+/* Pseudo-elemento para brilho e filtro */
+.star-rain-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* Fica acima do gradiente, mas abaixo do form */
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    #0000 0,
+    #0000 2px,
+    hsl(0 0 4%) 2px
+  );
+  background-size: 8px 8px;
+  --f: blur(1em) brightness(6);
+  animation: hii 10s linear infinite;
+}
+
+@keyframes hii {
+  0% { backdrop-filter: var(--f) hue-rotate(0deg); }
+  to { backdrop-filter: var(--f) hue-rotate(360deg); }
+}
+
+@keyframes hi {
+  0% {
+    background-position:
+      0px 220px, 3px 220px, 151.5px 337.5px,
+      25px 24px, 28px 24px, 176.5px 150px,
+      50px 16px, 53px 16px, 201.5px 91px,
+      75px 224px, 78px 224px, 226.5px 350.5px,
+      100px 19px, 103px 19px, 251.5px 121px,
+      125px 120px, 128px 120px, 276.5px 187px,
+      150px 31px, 153px 31px, 301.5px 120.5px,
+      175px 235px, 178px 235px, 326.5px 384.5px,
+      200px 121px, 203px 121px, 351.5px 228.5px,
+      225px 224px, 228px 224px, 376.5px 364.5px,
+      250px 26px, 253px 26px, 401.5px 105px,
+      275px 75px, 278px 75px, 426.5px 180px;
+  }
+  to {
+    background-position:
+      0px 6800px, 3px 6800px, 151.5px 6917.5px,
+      25px 13632px, 28px 13632px, 176.5px 13758px,
+      50px 5416px, 53px 5416px, 201.5px 5491px,
+      75px 17175px, 78px 17175px, 226.5px 17301.5px,
+      100px 5119px, 103px 5119px, 251.5px 5221px,
+      125px 8428px, 128px 8428px, 276.5px 8495px,
+      150px 9876px, 153px 9876px, 301.5px 9965.5px,
+      175px 13391px, 178px 13391px, 326.5px 13540.5px,
+      200px 14741px, 203px 14741px, 351.5px 14848.5px,
+      225px 18770px, 228px 18770px, 376.5px 18910.5px,
+      250px 5082px, 253px 5082px, 401.5px 5161px,
+      275px 6375px, 278px 6375px, 426.5px 6480px;
+  }
+}

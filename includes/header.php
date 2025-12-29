@@ -13,12 +13,12 @@
 
     <header class="main-header">
         <div class="logo">
-            <a href="public/index.php">Inti B. L. da Luz / Portfólio IFC</a>
+            <a href="index.php">Inti B. L. da Luz / Portfólio IFC</a>
         </div>
         
         <nav class="main-nav">
             <ul>
-                <li><a href="<?php echo $base_path; ?>public/index.php#projetos">Projetos</a></li>
+                <li><a href="public/index.php#projetos">Projetos</a></li>
                 
                 <li><a href="curriculo.php">Currículo</a></li>
                 
