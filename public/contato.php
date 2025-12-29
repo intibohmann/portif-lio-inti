@@ -46,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Digite sua mensagem..."></textarea>
             </div>
 
-            <!-- Botão com o novo estilo -->
             <button type="submit" class="btn-enviar-glow">
                 ENVIAR
             </button>
