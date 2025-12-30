@@ -822,3 +822,206 @@ section h2::after {
     .timeline-dot { left: 1px; }
     .timeline-item { padding-left: 40px; }
 }
+
+/* =========================================
+   SIDEBAR & MENU RESPONSIVO
+   ========================================= */
+
+/* Estilo dos números nos links (Estilo Tech) */
+.nav-number {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+    margin-right: 5px;
+}
+
+/* Botão de Contato no menu (Destaque) */
+.btn-nav {
+    border: 1px solid var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: var(--accent-color) !important;
+}
+.btn-nav:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+/* Esconde o hambúrguer no Desktop */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none; /* Escondido por padrão */
+}
+
+/* --- RESPONSIVIDADE (TABLET E CELULAR) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Botão Hambúrguer */
+    .hamburger {
+        display: block;
+        z-index: 1001; /* Acima do sidebar */
+    }
+
+    .hamburger .bar {
+        width: 30px;
+        height: 3px;
+        background-color: var(--accent-color);
+        margin: 6px 0;
+        transition: 0.4s;
+        border-radius: 2px;
+    }
+
+    /* Animação do X quando ativo */
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* 2. O Sidebar (Transformando a nav) */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 75%; /* Ocupa 75% da tela */
+        max-width: 300px;
+        background-color: rgba(17, 34, 64, 0.95); /* Azul Tech quase sólido */
+        backdrop-filter: blur(10px); /* Efeito vidro */
+        z-index: 1000;
+        transform: translateX(100%); /* Escondido para a direita */
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -10px 0px 30px -15px rgba(2, 12, 27, 0.7);
+        border-left: 1px solid var(--accent-color); /* Linha neon na borda */
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Classe para mostrar o sidebar */
+    .main-nav.active {
+        transform: translateX(0);
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Links um embaixo do outro */
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .main-nav li {
+        margin: 0;
+    }
+
+    .main-nav a {
+        font-size: 1.2em;
+        font-family: var(--font-mono);
+    }
+
+    /* 3. O Overlay (Fundo escuro atrás) */
+    .overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 25, 47, 0.7);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        backdrop-filter: blur(2px);
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* =========================================
+   BARRAS LATERAIS (SIDEBARS FIXOS)
+   ========================================= */
+
+.side-element {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side-element::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 90px;
+    background-color: var(--text-secondary);
+    margin: 0 auto;
+}
+
+.side-left {
+    left: 40px;
+    width: 40px;
+}
+
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-list a {
+    font-size: 20px;
+    padding: 10px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.social-list a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.side-right {
+    right: 40px;
+    width: 40px;
+}
+
+.email-wrapper {
+    margin-bottom: 20px;
+    writing-mode: vertical-rl; 
+    text-orientation: mixed;
+}
+
+.email-wrapper a {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.email-wrapper a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1080px) {
+    .side-element {
+        display: none;
+    }
+}
