@@ -33,10 +33,10 @@ $result = $conn->query($sql);
             <div class="hero-content">
                 <span class="ola">Olá, meu nome é</span>
                 <h1>Inti Bohmann.</h1>
-                <h2>Eu construo coisas para a internet.</h2>
+                <h2>Desenvolvedor Full-Stack.</h2>
                 <p class="hero-desc">
-                    Sou um Técnico em Informática focado em criar experiências digitais 
-                    acessíveis e performáticas usando tecnologias modernas.
+                    Sou um Técnico em Informática para Internet focado no desenvolvimento Web e Mobile 
+                    com conhecimentos na área da Cibersegurança e Help Desk.
                 </p>
                 <a href="#projetos" class="btn-cta">Veja meus projetos</a>
             </div>
@@ -128,7 +128,7 @@ $result = $conn->query($sql);
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="date">2026</span>
-                        <h3>Técnico em informática para internet</h3>
+                        <h3>Meu primeiro emprego pode ser com você!</h3>
                         <h4 class="institution">Nome da sua empresa</h4>
                         <p>
                             Minha primeira experiência profissional na área de TI, onde aplicarei os conhecimentos adquiridos durante o curso técnico,
